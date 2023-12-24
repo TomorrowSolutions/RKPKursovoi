@@ -72,48 +72,6 @@ INSERT INTO orders (
         client_id,
         manager_id
     )VALUES('2001-03-12','2001-03-11',1000,1,1);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2002-03-12','2002-03-11',1000,2,1);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2003-03-12','2003-03-11',1000,1,2);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2004-03-12','2004-03-11',1000,2,2);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2005-03-12','2005-03-11',1000,3,1);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2006-03-12','2006-03-11',1000,3,2);
-INSERT INTO orders (
-        date_of_complete,
-        date_of_signing,
-        price,
-        client_id,
-        manager_id
-    )VALUES('2007-03-12','2007-03-11',1000,3,3);
 --Детали договоров
 INSERT INTO order_details (
         quantity,
@@ -121,3 +79,9 @@ INSERT INTO order_details (
         order_id,
         service_id
     ) VALUES(1,1,1,1);
+INSERT INTO order_details (
+        quantity,
+        object_id,
+        order_id,
+        service_id
+    ) VALUES(1,1,1,2);

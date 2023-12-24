@@ -25,7 +25,7 @@ public class Service {
     private double price;
     @Column(nullable = false)
     private int periodOfExecution;
-    @OneToMany(mappedBy = "service",orphanRemoval = true)
+    @OneToMany(mappedBy = "service",orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonBackReference
     @JsonIgnore
     private List<OrderDetail> orderDetail;

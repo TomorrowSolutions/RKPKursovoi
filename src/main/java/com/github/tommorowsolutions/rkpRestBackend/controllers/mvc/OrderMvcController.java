@@ -92,6 +92,7 @@ public class OrderMvcController {
         //Получаем массив в виде строки
         String strArr = (String)dto.getListOfDetails();
         if (strArr!= null&&!strArr.trim().isEmpty()){
+            //Добавляем полученные подробности договора
             String[] splitted = strArr.split(",");
             long[] detailsArr = Stream.of(splitted).mapToLong(Long::parseLong).toArray();
             for (int i=0;i<detailsArr.length;i+=3){
@@ -103,20 +104,29 @@ public class OrderMvcController {
                 InsertDetail(temp);
             }
         }
-        var list =orderDetailRepository.findByOrderId(order.getId());
-        double sumPrice = 0; int sumDays=0;
-        for (var od:list) {
-            sumPrice+=od.getService().getPrice();
-            sumDays+=od.getService().getPeriodOfExecution();
-            sumDays*=od.getQuantity();
-            sumPrice*=od.getQuantity();
-        }
-        order.setPrice(sumPrice);
-        var finDate = LocalDate.of(order.getDateOfSigning().getYear(),order.getDateOfSigning().getMonthValue(),order.getDateOfSigning().getDayOfMonth());
-        order.setDateOfComplete(finDate.plusDays(sumDays));
-        order.setOrderDetails(list);
-        orderRepository.save(order);
+
+        orderRepository.save(foo1(order));
         return "redirect:/orders/details/"+order.getId();
+    }
+    private Order foo1(Order order){
+        var list =orderDetailRepository.findByOrderId(order.getId());
+        if(!list.isEmpty()){
+            double sumPrice = 0; int sumDays=0;
+            for (var od:list) {
+                sumPrice+=od.getService().getPrice();
+                sumDays+=od.getService().getPeriodOfExecution();
+                sumDays*=od.getQuantity();
+                sumPrice*=od.getQuantity();
+            }
+            order.setPrice(sumPrice);
+            var finDate = LocalDate.of(order.getDateOfSigning().getYear(),order.getDateOfSigning().getMonthValue(),order.getDateOfSigning().getDayOfMonth());
+            order.setDateOfComplete(finDate.plusDays(sumDays));
+        }
+        else{
+            order.setPrice(0);
+            order.setDateOfComplete(null);
+        }
+        return order;
     }
     private void InsertDetail(OrderDetailDto dto){
         var optOrder = orderRepository.findById(dto.getOrderId());
@@ -160,19 +170,7 @@ public class OrderMvcController {
         var optOrder = orderRepository.findById(id);
         if (optOrder.isEmpty()) return "redirect:/orders/";
         Order order = optOrder.get();
-        var list =orderDetailRepository.findByOrderId(order.getId());
-        double sumPrice = 0; int sumDays=0;
-        for (var od:list) {
-            sumPrice+=od.getService().getPrice();
-            sumDays+=od.getService().getPeriodOfExecution();
-            sumDays*=od.getQuantity();
-            sumPrice*=od.getQuantity();
-        }
-        order.setPrice(sumPrice);
-        var finDate = LocalDate.of(order.getDateOfSigning().getYear(),order.getDateOfSigning().getMonthValue(),order.getDateOfSigning().getDayOfMonth());
-        order.setDateOfComplete(finDate.plusDays(sumDays));
-        order.setOrderDetails(list);
-        orderRepository.save(order);
+        orderRepository.save(foo1(order));
         return "redirect:/orders/details/"+order.getId();
     }
     @PostMapping("/update")

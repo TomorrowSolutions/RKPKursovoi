@@ -34,7 +34,7 @@ public class Order {
     private LocalDate dateOfComplete;
     //@Column(nullable = false)
     private double price;
-    @OneToMany(mappedBy = "order", orphanRemoval = true)
+    @OneToMany(mappedBy = "order", orphanRemoval = true,fetch = FetchType.LAZY)
     @JsonBackReference
     private List<OrderDetail> orderDetails;
 }

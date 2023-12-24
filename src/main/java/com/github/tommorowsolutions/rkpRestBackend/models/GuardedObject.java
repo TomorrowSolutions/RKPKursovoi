@@ -26,7 +26,7 @@ public class GuardedObject {
     private String image;
     @Column(nullable = false)
     private String address;
-    @OneToMany(mappedBy = "guardedObject", orphanRemoval = true)
+    @OneToMany(mappedBy = "guardedObject", orphanRemoval = true,fetch = FetchType.LAZY)
     @JsonBackReference
     @JsonIgnore
     private List<OrderDetail> orderDetails;
