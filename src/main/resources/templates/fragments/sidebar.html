@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div class="bg-white" id="sidebar-wrapper">
+        <div class="list-group list-group-flush my-3">
+          <a th:href="@{'/clients/'}" class="list-group-item list-group-item-action bg-transparent second-text active">
+            <i class="fas fa-solid fa-address-book me-2"></i> Clients
+          </a>
+          <a th:href="@{'/managers/'}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            <i class="fas fa-users me-2"></i> Managers
+          </a>
+          <a th:href="@{'/guardedobjects/'}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            <i class="fas fa-shield-halved me-2"></i> GuardedObjects
+          </a>
+          <a th:href="@{'/orders/'}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            <i class="fas fa-file-shield me-2"></i> Orders
+          </a>
+          <a th:href="@{'/orderdetails/'}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            <i class="fas fa-file-lines me-2"></i> OrderDetails
+          </a>
+          <a th:href="@{'/services/'}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+            <i class="fas fa-project-diagram me-2"></i> Services
+          </a>
+        </div>
+      </div>
+</body>
+</html>
