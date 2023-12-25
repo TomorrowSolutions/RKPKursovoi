@@ -52,6 +52,15 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0 fw-bold">Адрес</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="text" placeholder="Введите адрес" th:field="*{address}"/>
+                                        </div>
+                                    </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0 fw-bold">Тип лица</p>
@@ -60,6 +69,15 @@
                                             <select class="form-control" th:field="*{typeOfPerson}">
                                                 <option th:each="type : ${typesOfPerson}"  th:value="${type}" th:text="${type}"/>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0 fw-bold">Номер телефона</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="text" pattern="\d*" minlength="11" maxlength="11" placeholder="Введите номер телефона" th:field="*{phoneNumber}"/>
                                         </div>
                                     </div>
                                     <hr>
