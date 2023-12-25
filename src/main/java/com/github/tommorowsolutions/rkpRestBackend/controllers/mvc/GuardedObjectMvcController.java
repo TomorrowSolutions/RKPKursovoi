@@ -3,12 +3,10 @@ package com.github.tommorowsolutions.rkpRestBackend.controllers.mvc;
 import com.github.tommorowsolutions.rkpRestBackend.models.GuardedObject;
 import com.github.tommorowsolutions.rkpRestBackend.repositories.GuardedObjectRepository;
 import com.github.tommorowsolutions.rkpRestBackend.repositories.page.GuardedObjectPageRepository;
-import com.github.tommorowsolutions.rkpRestBackend.utils.FileUploadUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

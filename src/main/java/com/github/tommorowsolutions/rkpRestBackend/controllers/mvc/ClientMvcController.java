@@ -9,11 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RequestMapping(value={"/clients","","/"})
 @Controller
 public class ClientMvcController {
     private final ClientPageRepository clientPageRepository;
     private final ClientRepository clientRepository;
+    private final Logger logger = Logger.getLogger(ClientMvcController.class.getName());
 
     public ClientMvcController(ClientPageRepository clientPageRepository, ClientRepository clientRepository) {
         this.clientPageRepository = clientPageRepository;
@@ -23,8 +26,8 @@ public class ClientMvcController {
     //Получаем первых пять клиентов
     @GetMapping("/")
     public String Index(Model model){
-        var clients = clientPageRepository.findTop5ByOrderByIdDesc(PageRequest.of(0,5)).getContent();
-        model.addAttribute("clients",clients);
+        var clients = clientPageRepository.findTop5ByOrderByIdDesc(PageRequest.of(0, 5)).getContent();
+        model.addAttribute("clients", clients);
         return "clients/Index";
     }
     @GetMapping("/loadall")
